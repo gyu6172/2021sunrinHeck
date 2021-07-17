@@ -3,6 +3,9 @@ package com.example.sunrinheck2021;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -35,11 +38,44 @@ public class RegisterActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private TextView question_tv;
     private int year, month, day, growth, period;
+    private AlarmManager alarmManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+
+
+        Intent intent = new Intent(getApplicationContext(), Alarm.class);
+        PendingIntent pIntent = PendingIntent.getBroadcast(getApplicationContext(), 0,intent, 0);
+
+        alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
+
+
+        Calendar calendar1 = Calendar.getInstance();
+        calendar1.set(Calendar.HOUR_OF_DAY, 5);
+        calendar1.set(Calendar.MINUTE, 49);
+        calendar1.set(Calendar.SECOND, 0);
+        calendar1.set(Calendar.MILLISECOND, 0);
+
+        // 지정한 시간에 매일 알림
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar1.getTimeInMillis(),  AlarmManager.INTERVAL_DAY, pIntent);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         Calendar calendar = Calendar.getInstance();
 
