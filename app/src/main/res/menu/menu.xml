@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:title="상점"
+        android:id="@+id/bottom_shop"
+        android:checkable="false"
+        />
+
+    <item
+        android:id="@+id/action_blank"
+        android:checkable="false"
+        android:checked="true"
+        android:enabled="false"
+        android:title=""/>
+
+
+    <item
+        android:title="리스트"
+        android:id="@+id/bottom_list"
+        android:checkable="false"/>
+</menu>
