@@ -32,23 +32,8 @@
         android:textSize="16sp"
         android:textColor="@color/main_color"/>
 
-
-    <EditText
-        android:id="@+id/register_name_input"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:textColor="#000"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.281"
-        app:layout_constraintRight_toRightOf="parent"
-        android:background="@drawable/edit_round"
-        android:layout_marginLeft="20dp"
-        app:layout_constraintWidth_percent="0.9"
-        app:layout_constraintHeight_percent="0.055"/>
-
     <TextView
+        android:id="@+id/register_name_tv"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintVertical_bias="0.24"
@@ -62,24 +47,23 @@
 
 
     <EditText
-        android:id="@+id/register_id_input"
+        android:id="@+id/register_name_input"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:textColor="#000"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.41"
-        app:layout_constraintRight_toRightOf="parent"
         android:background="@drawable/edit_round"
-        android:layout_marginLeft="20dp"
+        android:textColor="#000"
+        app:layout_constraintTop_toBottomOf="@id/register_name_tv"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintWidth_percent="0.9"
-        app:layout_constraintHeight_percent="0.055"/>
+        app:layout_constraintHeight_percent="0.06"
+        android:layout_marginTop="20dp"/>
+
 
     <TextView
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.37"
+        android:id="@+id/register_id_tv"
+        android:layout_marginTop="25dp"
+        app:layout_constraintTop_toBottomOf="@id/register_name_input"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/nanumsquareb"
@@ -89,26 +73,27 @@
         app:layout_constraintLeft_toLeftOf="@id/register_name_input"/>
 
 
-
     <EditText
-        android:id="@+id/register_pw_input"
+        android:id="@+id/register_id_input"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:textColor="#000"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.54"
-        app:layout_constraintRight_toRightOf="parent"
         android:background="@drawable/edit_round"
-        android:layout_marginLeft="20dp"
+        android:textColor="#000"
+        app:layout_constraintTop_toBottomOf="@id/register_id_tv"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintWidth_percent="0.9"
-        app:layout_constraintHeight_percent="0.055"/>
+        app:layout_constraintHeight_percent="0.06"
+        android:layout_marginTop="20dp"/>
+
+
+
+
 
     <TextView
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.49"
+        android:id="@+id/register_pw_tv"
+        android:layout_marginTop="25dp"
+        app:layout_constraintTop_toBottomOf="@id/register_id_input"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/nanumsquareb"
@@ -117,25 +102,24 @@
         android:text="비밀번호"
         app:layout_constraintLeft_toLeftOf="@id/register_name_input"/>
 
+
     <EditText
-        android:id="@+id/register_marimoName_input"
+        android:id="@+id/register_pw_input"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:textColor="#000"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.665"
-        app:layout_constraintRight_toRightOf="parent"
         android:background="@drawable/edit_round"
-        android:layout_marginLeft="20dp"
+        android:textColor="#000"
+        app:layout_constraintTop_toBottomOf="@id/register_pw_tv"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintWidth_percent="0.9"
-        app:layout_constraintHeight_percent="0.055"/>
+        app:layout_constraintHeight_percent="0.06"
+        android:layout_marginTop="20dp"/>
 
     <TextView
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.62"
+        android:id="@+id/register_marimoName_tv"
+        android:layout_marginTop="25dp"
+        app:layout_constraintTop_toBottomOf="@id/register_pw_input"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/nanumsquareb"
@@ -144,19 +128,38 @@
         android:text="마리모 이름"
         app:layout_constraintLeft_toLeftOf="@id/register_name_input"/>
 
-    <Button
+
+    <EditText
+        android:id="@+id/register_marimoName_input"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/edit_round"
+        android:textColor="#000"
+        app:layout_constraintTop_toBottomOf="@id/register_marimoName_tv"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintWidth_percent="0.9"
+        app:layout_constraintHeight_percent="0.06"
+        android:layout_marginTop="20dp"/>
+
+
+
+
+
+    <TextView
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:text="가입하기"
         android:id="@+id/register_registerBtn"
-        app:layout_constraintLeft_toLeftOf="@id/register_marimoName_input"
-        app:layout_constraintRight_toRightOf="@id/register_marimoName_input"
         app:layout_constraintTop_toBottomOf="@id/register_marimoName_input"
-        app:layout_constraintHeight_percent="0.08"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHeight_percent="0.06"
+        android:layout_marginHorizontal="30dp"
         android:layout_marginTop="50dp"
         android:textSize="16sp"
         android:textColor="#fff"
-        android:background="@drawable/button_round"
+        style="@style/ButtonStlye123"
         android:fontFamily="@font/nanumsquareb"
         />
 
@@ -167,7 +170,7 @@
         app:layout_constraintLeft_toLeftOf="@id/register_registerBtn"
         app:layout_constraintRight_toRightOf="@id/register_registerBtn"
         app:layout_constraintTop_toBottomOf="@id/register_registerBtn"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="25dp"
         android:text="이미 계정이 있으신가요?"
         android:textColor="#000"
         app:layout_constraintHorizontal_bias="0.3"

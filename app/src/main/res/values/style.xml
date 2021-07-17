@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:buttonStyle">@style/ButtonStlye123</item>
 
+    </style>
+    <style name="ButtonStlye123" parent="android:style/Widget.Button">
+        <item name="android:background">@drawable/button_round</item>
     </style>
 </resources>
