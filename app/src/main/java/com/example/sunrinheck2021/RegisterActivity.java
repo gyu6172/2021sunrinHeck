@@ -19,9 +19,9 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    private EditText id_input, pw_input;
+    private EditText id_input, pw_input, userName_input, marimoName_input;
     private Button register_btn;
-    private String id, pw;
+    private String id, pw, userName, marimoName;
     private FirebaseAuth mAuth;
 
     @Override
@@ -32,13 +32,16 @@ public class RegisterActivity extends AppCompatActivity {
         id_input = findViewById(R.id.register_id_input);
         pw_input = findViewById(R.id.register_pw_input);
         register_btn = findViewById(R.id.register_registerBtn);
+        userName_input = findViewById(R.id.register_name_input);
+        marimoName_input = findViewById(R.id.register_marimoName_input);
 
         mAuth = FirebaseAuth.getInstance();
 
         register_btn.setOnClickListener(v-> {
             id = id_input.getText().toString();
             pw = pw_input.getText().toString();
-
+            userName = userName_input.getText().toString();
+            marimoName = marimoName_input.getText().toString();
             mAuth.createUserWithEmailAndPassword(id, pw)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
