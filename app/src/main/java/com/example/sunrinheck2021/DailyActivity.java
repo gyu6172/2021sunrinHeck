@@ -1,5 +1,6 @@
 package com.example.sunrinheck2021;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.SharedPreferences;
@@ -16,6 +17,9 @@ public class DailyActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_daily);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
 
         marimoNameTv = findViewById(R.id.daily_name);
         sizeTv = findViewById(R.id.daily_size);

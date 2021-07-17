@@ -1,6 +1,7 @@
 package com.example.sunrinheck2021;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlarmManager;
@@ -46,6 +47,9 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
 
 
         Intent intent = new Intent(getApplicationContext(), Alarm.class);

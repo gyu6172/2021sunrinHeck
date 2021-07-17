@@ -29,7 +29,7 @@
         android:text="일기"
         android:fontFamily="@font/nanumsquareb"
         android:textColor="#000"/>
-    
+
     
     <androidx.cardview.widget.CardView
         android:id="@+id/daily_card"

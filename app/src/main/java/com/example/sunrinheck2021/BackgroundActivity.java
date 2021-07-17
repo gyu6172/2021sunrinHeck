@@ -1,5 +1,6 @@
 package com.example.sunrinheck2021;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -24,6 +25,9 @@ public class BackgroundActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_background);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
 
         sharedPreferences = getSharedPreferences("mainPref",0);
         SharedPreferences.Editor editor = sharedPreferences.edit();
