@@ -13,6 +13,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -22,6 +24,8 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import org.jetbrains.annotations.NotNull;
+
+import java.util.Random;
 
 import static com.example.sunrinheck2021.R.drawable.copy_1;
 import static com.example.sunrinheck2021.R.drawable.copy_2;
@@ -41,6 +45,7 @@ public class MainFragment extends Fragment {
     private FirebaseFirestore db;
     private int equipState;
     private ConstraintLayout mainImage;
+    private ImageView imageView;
 
 
     @Override
@@ -49,6 +54,7 @@ public class MainFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
 
         mainImage = view.findViewById(R.id.main_image);
+        imageView = view.findViewById(R.id.imageView);
 
         equipState = 1;
         // Inflate the layout for this fragment
@@ -84,6 +90,39 @@ public class MainFragment extends Fragment {
             default:
                 break;
         }
+
+        Animation animation = AnimationUtils.loadAnimation(getContext(),R.anim.bounce);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                imageView.startAnimation(animation);
+
+                long seed = System.currentTimeMillis();
+                Random random = new Random(seed);
+
+                int n = random.nextInt(4);
+                switch (n){
+                    case 0:
+                        imageView.setImageResource(R.drawable.img_0040);
+                        break;
+
+                    case 1:
+                        imageView.setImageResource(R.drawable.img_0045);
+                        break;
+
+                    case 2:
+                        imageView.setImageResource(R.drawable.img_0046);
+                        break;
+
+                    case 3:
+                        imageView.setImageResource(R.drawable.img_0047);
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+        });
 
         id = sharedPreferences.getString("id","");
         pw = sharedPreferences.getString("pw","");
