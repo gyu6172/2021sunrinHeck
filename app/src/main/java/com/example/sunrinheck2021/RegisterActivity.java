@@ -21,6 +21,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,11 +34,21 @@ public class RegisterActivity extends AppCompatActivity {
     private String id, pw, userName, marimoName;
     private FirebaseAuth mAuth;
     private TextView question_tv;
+    private int year, month, day, growth, period;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+        Calendar calendar = Calendar.getInstance();
+
+        year = calendar.get(Calendar.YEAR);
+        month = calendar.get(Calendar.MONTH);
+        day = calendar.get(Calendar.DAY_OF_MONTH);
+        Log.e("date",""+year+"/"+month+"/"+day);
+
+        month++;
 
         id_input = findViewById(R.id.register_id_input);
         pw_input = findViewById(R.id.register_pw_input);
@@ -71,12 +84,20 @@ public class RegisterActivity extends AppCompatActivity {
 
                                 String uid = user.getUid();
 
+                                growth = 5;
+                                period = 1;
+
                                 Map<String, Object> userStats = new HashMap<>();
                                 userStats.put("id",id);
                                 userStats.put("pw",pw);
                                 userStats.put("userName",userName);
                                 userStats.put("marimoName",marimoName);
                                 userStats.put("uid",uid);
+                                userStats.put("year",year);
+                                userStats.put("month",month);
+                                userStats.put("day",day);
+                                userStats.put("growth",growth);
+                                userStats.put("period",period);
 
                                 database.collection("users").add(userStats);
 
