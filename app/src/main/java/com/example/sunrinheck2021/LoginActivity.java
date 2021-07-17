@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -31,12 +32,31 @@ public class LoginActivity extends AppCompatActivity {
     private Button login_btn, register_btn ;
     private String id, pw;
     private FirebaseAuth mAuth;
-    private GoogleSignInClient mGoogleSignInClient;
+    private SharedPreferences sharedPreferences;
+    private SharedPreferences.Editor editor;
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        SharedPreferences preferences = getSharedPreferences("pref",0);
+        String id = preferences.getString("id","");
+        String pw = preferences.getString("pw","");
+        if(!id.equals("")){
+            signIn(id,pw);
+        }
+        else{
+
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        sharedPreferences = getSharedPreferences("pref",0);
+        editor = sharedPreferences.edit();
 
         id_input = findViewById(R.id.login_id_input);
         pw_input = findViewById(R.id.login_pw_input);
@@ -46,36 +66,14 @@ public class LoginActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
-                .requestEmail()
-                .build();
-
-        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-
         login_btn.setOnClickListener(v->{
             id = id_input.getText().toString();
             pw = pw_input.getText().toString();
 
-            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-
-            mAuth.signInWithEmailAndPassword(id, pw)
-                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()) {
-                                FirebaseUser user = mAuth.getCurrentUser();
-                                Toast.makeText(LoginActivity.this, "로그인 성공", Toast.LENGTH_SHORT).show();
-                                intent.putExtra("id", id);
-                                intent.putExtra("pw", pw);
-                                startActivity(intent);
-                            } else {
-                                Toast.makeText(LoginActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
+            signIn(id,pw);
 
         });
+
 
 
         register_btn.setOnClickListener(new View.OnClickListener() {
@@ -85,6 +83,28 @@ public class LoginActivity extends AppCompatActivity {
                 startActivityForResult(intent, 100);
             }
         });
+    }
+
+    private void signIn(String id, String pw){
+        mAuth.signInWithEmailAndPassword(id, pw)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            Toast.makeText(LoginActivity.this, "로그인 성공", Toast.LENGTH_SHORT).show();
+                            editor.putString("id",id);
+                            editor.putString("pw", pw);
+                            intent.putExtra("id", id);
+                            intent.putExtra("pw", pw);
+                            editor.commit();
+                            startActivity(intent);
+                        } else {
+                            Toast.makeText(LoginActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
     }
 
 
