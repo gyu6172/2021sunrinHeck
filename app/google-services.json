@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "572643558509",
+    "project_id": "sunrinheck",
+    "storage_bucket": "sunrinheck.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:572643558509:android:2b93025cb213f35c46ab64",
+        "android_client_info": {
+          "package_name": "com.example.sunrinheck2021"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "572643558509-hhjk2c71739upc1bt0kiv627haf65mcc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCRujeFNLsC-NmdalJ35clhWLZO83f6ifw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "572643558509-hhjk2c71739upc1bt0kiv627haf65mcc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
