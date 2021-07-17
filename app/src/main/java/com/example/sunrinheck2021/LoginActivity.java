@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -29,7 +30,7 @@ import com.google.firebase.auth.GoogleAuthProvider;
 
 public class LoginActivity extends AppCompatActivity {
     private EditText id_input, pw_input;
-    private Button login_btn, register_btn ;
+    private TextView login_btn, register_btn ;
     private String id, pw;
     private FirebaseAuth mAuth;
     private SharedPreferences sharedPreferences;
@@ -45,9 +46,6 @@ public class LoginActivity extends AppCompatActivity {
         if(!id.equals("")){
             signIn(id,pw);
         }
-        else{
-
-        }
     }
 
     @Override
@@ -62,7 +60,6 @@ public class LoginActivity extends AppCompatActivity {
         pw_input = findViewById(R.id.login_pw_input);
         login_btn = findViewById(R.id.login_loginbtn);
         register_btn = findViewById(R.id.login_register_btn);
-
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -98,6 +95,7 @@ public class LoginActivity extends AppCompatActivity {
                             editor.putString("pw", pw);
                             intent.putExtra("id", id);
                             intent.putExtra("pw", pw);
+                            intent.putExtra("uid",user.getUid());
                             editor.commit();
                             startActivity(intent);
                         } else {

@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -26,9 +27,10 @@ import java.util.Map;
 public class RegisterActivity extends AppCompatActivity {
 
     private EditText id_input, pw_input, userName_input, marimoName_input;
-    private Button register_btn;
+    private TextView register_btn;
     private String id, pw, userName, marimoName;
     private FirebaseAuth mAuth;
+    private TextView question_tv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,10 +42,19 @@ public class RegisterActivity extends AppCompatActivity {
         register_btn = findViewById(R.id.register_registerBtn);
         userName_input = findViewById(R.id.register_name_input);
         marimoName_input = findViewById(R.id.register_marimoName_input);
+        question_tv = findViewById(R.id.question_bt);
 
         mAuth = FirebaseAuth.getInstance();
 
         FirebaseFirestore database = FirebaseFirestore.getInstance();
+
+        question_tv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                startActivity(intent);
+            }
+        });
 
         register_btn.setOnClickListener(v-> {
             id = id_input.getText().toString();
@@ -68,11 +79,6 @@ public class RegisterActivity extends AppCompatActivity {
                                 userStats.put("uid",uid);
 
                                 database.collection("users").add(userStats);
-
-//                                DatabaseReference user_id, user_name, marimo_name;
-//                                user_id = database.getReference("user_id");
-//                                user_name = database.getReference("user_name");
-//                                marimo_name = database.getReference("marimo_name");
 
                                 Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                                 setResult(101);
