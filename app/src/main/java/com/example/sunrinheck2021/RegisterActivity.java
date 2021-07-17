@@ -16,6 +16,12 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -37,6 +43,8 @@ public class RegisterActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
+        FirebaseFirestore database = FirebaseFirestore.getInstance();
+
         register_btn.setOnClickListener(v-> {
             id = id_input.getText().toString();
             pw = pw_input.getText().toString();
@@ -49,6 +57,23 @@ public class RegisterActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 Log.d("TAG", "createUserWithEmail:success");
                                 FirebaseUser user = mAuth.getCurrentUser();
+
+                                String uid = user.getUid();
+
+                                Map<String, Object> userStats = new HashMap<>();
+                                userStats.put("id",id);
+                                userStats.put("pw",pw);
+                                userStats.put("userName",userName);
+                                userStats.put("marimoName",marimoName);
+                                userStats.put("uid",uid);
+
+                                database.collection("users").add(userStats);
+
+//                                DatabaseReference user_id, user_name, marimo_name;
+//                                user_id = database.getReference("user_id");
+//                                user_name = database.getReference("user_name");
+//                                marimo_name = database.getReference("marimo_name");
+
                                 Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                                 setResult(101);
                                 finish();
