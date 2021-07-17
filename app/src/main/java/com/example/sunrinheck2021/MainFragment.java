@@ -54,6 +54,7 @@ public class MainFragment extends Fragment {
         // Inflate the layout for this fragment
 
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("mainPref",0);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
 
         equipState = sharedPreferences.getInt("equip",1);
 
@@ -99,6 +100,11 @@ public class MainFragment extends Fragment {
                             marimoName = document.getData().get("marimoName").toString();
                             size = Integer.parseInt(document.getData().get("growth").toString());
                             period = Integer.parseInt(document.getData().get("period").toString());
+                            editor.putString("marimoName",marimoName);
+                            editor.putInt("size", size);
+                            editor.putInt("period",period);
+                            editor.apply();
+
                             Log.e("stats",marimoName+size+period);
                         }
                     }
