@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -27,7 +28,8 @@ public class MainActivity extends AppCompatActivity {
         main_bottom.setOnItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.bottom_shop:
-                    switchFragment(ShopFragment.newInstance());
+                    Intent intent = new Intent(this,BackgroundActivity.class);
+                    startActivity(intent);
                     break;
                 case R.id.bottom_list:
                     switchFragment(ListFragment.newInstance());
