@@ -18,7 +18,13 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
+import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -28,20 +34,34 @@ import java.util.Map;
 
 import javax.annotation.Nonnull;
 
+import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
 
 public class Alarm extends BroadcastReceiver {
 
     static RequestQueue requestQueue;
     private SharedPreferences sharedPreferences;
+    private SharedPreferences sharedPreferences1;
+    private SharedPreferences sharedPreferences2;
+    private FirebaseFirestore db;
     private int num;
     private int number;
     @Override
     public void onReceive(Context context, Intent intent){
         sharedPreferences = context.getSharedPreferences("check_day",0);
+        sharedPreferences1 = context.getSharedPreferences("grow_check",0);
+        sharedPreferences2 = context.getSharedPreferences("mainPref",0);
         num = sharedPreferences.getInt("check",1);
+        number = sharedPreferences1.getInt("grow_check",1);
         SharedPreferences.Editor editor = sharedPreferences.edit();
+        SharedPreferences.Editor editor1 = sharedPreferences1.edit();
+        SharedPreferences.Editor editor2 = sharedPreferences2.edit();
+
+        int size = sharedPreferences2.getInt("size",1);
+
         if (num == 7){
+            editor1.putInt("grow_check",num++);
+            editor2.putInt("size",++size);
             editor.putInt("check",0);
             NotificationCompat.Builder builders = new NotificationCompat.Builder(context, "default");
             builders.setSmallIcon(R.mipmap.ic_launcher);
@@ -58,6 +78,9 @@ public class Alarm extends BroadcastReceiver {
             editor.putInt("check",num++);
 
         }
+        editor.apply();
+        editor1.apply();
+        editor2.apply();
 
         CurrentWeatherCall(context);
     }

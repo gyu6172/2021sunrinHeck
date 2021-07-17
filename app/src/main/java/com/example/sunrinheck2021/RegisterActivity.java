@@ -7,6 +7,7 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -54,8 +55,8 @@ public class RegisterActivity extends AppCompatActivity {
 
 
         Calendar calendar1 = Calendar.getInstance();
-        calendar1.set(Calendar.HOUR_OF_DAY, 5);
-        calendar1.set(Calendar.MINUTE, 49);
+        calendar1.set(Calendar.HOUR_OF_DAY, 12);
+        calendar1.set(Calendar.MINUTE, 0);
         calendar1.set(Calendar.SECOND, 0);
         calendar1.set(Calendar.MILLISECOND, 0);
 
@@ -63,20 +64,9 @@ public class RegisterActivity extends AppCompatActivity {
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar1.getTimeInMillis(),  AlarmManager.INTERVAL_DAY, pIntent);
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        SharedPreferences sharedPreferences = getSharedPreferences("grow_check",0);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt("grow_check",1);
         Calendar calendar = Calendar.getInstance();
 
         year = calendar.get(Calendar.YEAR);
