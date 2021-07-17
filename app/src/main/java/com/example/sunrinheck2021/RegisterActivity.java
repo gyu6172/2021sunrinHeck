@@ -35,7 +35,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        register_btn.setOnClickListener(v->{
+        register_btn.setOnClickListener(v-> {
             id = id_input.getText().toString();
             pw = pw_input.getText().toString();
 
@@ -48,16 +48,13 @@ public class RegisterActivity extends AppCompatActivity {
                                 FirebaseUser user = mAuth.getCurrentUser();
                                 Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                                 setResult(101);
-                                startActivity(intent);
+                                finish();
                             } else {
                                 Log.w("TAG", "createUserWithEmail:failure", task.getException());
                                 Toast.makeText(RegisterActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
-
-            setResult(101);
-            finish();
         });
     }
 }
