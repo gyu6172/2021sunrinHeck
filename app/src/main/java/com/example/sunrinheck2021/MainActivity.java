@@ -45,7 +45,8 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(intent);
                     break;
                 case R.id.bottom_list:
-                    switchFragment(ListFragment.newInstance());
+                    Intent intent2 = new Intent(this,DailyActivity.class);
+                    startActivity(intent2);
                     break;
             }
             return true;
@@ -54,9 +55,6 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(v->{
             switchFragment(MainFragment.newInstance());
         });
-
-
-
     }
 
 

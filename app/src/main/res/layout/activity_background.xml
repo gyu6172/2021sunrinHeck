@@ -53,6 +53,7 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:id="@+id/bg1"
             app:layout_constraintTop_toTopOf="@id/base_background"
             app:layout_constraintBottom_toBottomOf="@id/base_background"
             app:layout_constraintLeft_toLeftOf="@id/base_background"
@@ -119,6 +120,7 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:id="@+id/bg2"
             app:layout_constraintTop_toTopOf="@id/base_background"
             app:layout_constraintBottom_toBottomOf="@id/base_background"
             app:layout_constraintLeft_toLeftOf="@id/base_background"
@@ -184,6 +186,7 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:id="@+id/bg3"
             app:layout_constraintTop_toTopOf="@id/base_background"
             app:layout_constraintBottom_toBottomOf="@id/base_background"
             app:layout_constraintLeft_toLeftOf="@id/base_background"
@@ -250,6 +253,7 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:id="@+id/bg4"
             app:layout_constraintTop_toTopOf="@id/base_background"
             app:layout_constraintBottom_toBottomOf="@id/base_background"
             app:layout_constraintLeft_toLeftOf="@id/base_background"
